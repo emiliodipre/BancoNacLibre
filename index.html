@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opciones de Reportes del Cajero</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="report-container">
+      <div class="report-option report-transacciones" id="report-transacciones">
+        <a href="#" class="text-white text-decoration-none">Reporte de Transacciones</a>
+      </div>
+      <div class="report-option report-seguridad" id="report-seguridad">
+        <a href="#" class="text-white text-decoration-none">Reporte de Seguridad</a>
+      </div>
+      <div class="report-option report-errores" id="report-error">
+        <a href="#" class="text-white text-decoration-none">Reporte de Errores</a>
+      </div>
+      
+      <div id="transacciones-form" style="display: none;" class="mt-4">
+        <h4>Reporte de Transacciones</h4>
+        <p>Desea enviar el reporte al banco sobre las transacciones diarias realizadas?</p>
+        <button id="enviarTransacciones" class="btn btn-primary">Enviar</button>
+      </div>
+      
+      <div id="seguridad-form" style="display: none;" class="mt-4">
+        <h4>Reporte de Seguridad</h4>
+        <p>Mostrando intentos no autorizados e intentos de manipulación de hardware...</p>
+        <button id="enviarSeguridad" class="btn btn-primary">Enviar</button>
+      </div>
+      
+      <div id="errores-form" style="display: none;" class="mt-4">
+        <h4>Reporte de Errores</h4>
+        <p>Mostrando cantidad de errores generados por día...</p>
+        <button id="enviarErrores" class="btn btn-primary">Enviar</button>
+      </div>
+      
+      <!-- Agrega este formulario aquí -->
+      <form id="reporteForm" method="post" action="reporte.php">
+          <input type="hidden" name="tipo_reporte" id="tipo_reporte">
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
