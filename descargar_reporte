@@ -1,0 +1,21 @@
+<?php
+// Obtener el nombre del archivo PDF
+$filename = 'reporte_' . time() . '.pdf'; // Ajusta el nombre según tu lógica
+
+// Verificar si el archivo existe
+if (file_exists('temp/' . $filename)) {
+    // Forzar la descarga del archivo
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    readfile('temp/' . $filename);
+    // Eliminar el archivo temporal después de descargarlo
+    unlink('temp/' . $filename);
+} else {
+    // Mostrar un mensaje de error si el archivo no existe
+    echo 'Error: El archivo no se encontró.';
+}

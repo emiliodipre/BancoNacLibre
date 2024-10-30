@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cierre de Caja</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        /* ocultar todas las secciones inicialmente */
+        #menu-principal, #recoleccion-datos, #generacion-reportes, #notificacion-cierre, #cierre-seccion {
+            display: none;
+        }
+    </style>
+</head>
+<body ng-app="cierreCajaApp" ng-controller="CierreCajaController">
+
+    <div class="container">
+        <h1 class="text-center mt-5">Cierre De Caja</h1>
+
+        <!-- Validación de Usuario -->
+        <div id="validacion" class="mt-5">
+            <h3>Validación de Usuario</h3>
+            <form id="formulario-validacion" class="form-group">
+                <label for="password">Ingrese Contraseña:</label>
+                <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                <button type="button" class="btn btn-primary mt-3" onclick="validarUsuario()">Validar</button>
+            </form>
+        </div>
+
+        <!-- Menú Principal (invisible hasta que el usuario se valide) -->
+        <div id="menu-principal" class="mt-5">
+            <h3>Menú</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#" onclick="mostrarSeccion('recoleccion-datos')">1. Recolección de Datos</a></li>
+                <li class="list-group-item"><a href="#" onclick="mostrarSeccion('generacion-reportes')">2. Generación de Reportes</a></li>
+                <li class="list-group-item"><a href="#" onclick="mostrarSeccion('notificacion-cierre')">3. Notificación y Cierre</a></li>
+                <li class="list-group-item"><a href="#" onclick="mostrarSeccion('cierre-seccion')">4. Cerrar Sección</a></li> <!-- Nueva opción para cerrar sesión -->
+            </ul>
+        </div>
+
+        <!-- Recolección de Datos -->
+        <div id="recoleccion-datos" class="mt-5">
+            <h3>Recolección de Datos</h3>
+            <form>
+                <div class="form-group">
+                    <label for="billete100">$100:</label>
+                    <input type="number" class="form-control" id="billete100" placeholder="Cantidad">
+                </div>
+                <div class="form-group">
+                    <label for="billete200">$200:</label>
+                    <input type="number" class="form-control" id="billete200" placeholder="Cantidad">
+                </div>
+                <div class="form-group">
+                    <label for="billete500">$500:</label>
+                    <input type="number" class="form-control" id="billete500" placeholder="Cantidad">
+                </div>
+                <div class="form-group">
+                    <label for="billete1000">$1000:</label>
+                    <input type="number" class="form-control" id="billete1000" placeholder="Cantidad">
+                </div>
+                <div class="form-group">
+                    <label for="billete2000">$2000:</label>
+                    <input type="number" class="form-control" id="billete2000" placeholder="Cantidad">
+                </div>
+                <button type="button" class="btn btn-success" onclick="guardarDatos()">Guardar</button>
+            </form>
+        </div>
+
+        <!-- Generación de Reportes -->
+        <div id="generacion-reportes" class="mt-5">
+            <h3>Generación de Reportes</h3>
+            <ul id="reporte-total" class="list-group">
+                <!-- Aquí se llenará el reporte con JavaScript -->
+            </ul>
+            <button id="btn-continuar" type="button" class="btn btn-primary mt-3" style="display: none;" onclick="continuarANotificacion()">Continuar</button>
+        </div>
+
+       <!-- Notificación y Cierre -->
+<div id="notificacion-cierre" class="mt-5">
+    <h3>Notificación y Cierre</h3>
+    <div id="loader" style="display: none;">
+        <img src="gif.png" alt="Cargando..." /> 
+        <p>Enviando reporte...</p>
+    </div>
+    <p id="mensaje-reporte" style="display: none;"></p>
+    <button type="button" class="btn btn-success mt-3" onclick="descargarReporte()">Descargar Reporte</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="enviarReporte()">Enviar Reporte</button>
+    <button type="button" class="btn btn-primary mt-3" onclick="mostrarSeccion('cierre-seccion')">Continuar</button>
+</div>
+
+        <!-- Cerrar Sección -->
+        <div id="cierre-seccion" class="mt-5">
+            <h3>Cerrar Sección</h3>
+            <p>¿Seguro que quieres cerrar la sección?</p>
+            <button type="button" class="btn btn-danger mt-3" onclick="cerrarSeccion()">Cerrar Sección</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
